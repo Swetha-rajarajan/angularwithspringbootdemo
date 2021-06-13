@@ -1,0 +1,72 @@
+<!-- Load and display the collection of notes from server as Material Cards with card title set to note title and card content set to note text  -->
+
+
+<form align="center" (ngSubmit)="addBook(bookForm.value)" #bookForm="ngForm" method="post">
+  <mat-form-field appearance="fill">
+    <mat-label>book id</mat-label>
+    <input matInput name="id" ngModel>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>book name</mat-label>
+    <input matInput name="name" ngModel>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>book author</mat-label>
+    <input matInput name="author" ngModel>
+  </mat-form-field>
+ <br>
+  <button mat-raised-button color="primary" class="button" type="submit">New Book</button>
+ 
+</form>
+
+<br>
+
+
+
+
+
+
+<div class="cardis">
+
+
+  <mat-grid-list cols="4" rowHeight="250px"  style="height: 250px;" gutterSize="30px">
+    <mat-grid-tile *ngFor ="let book of books" style="height: 250px;">
+  
+    <mat-card class="display" color="primary" >
+         <mat-card-header>
+           <mat-card-title><b>Book</b></mat-card-title>
+        </mat-card-header>
+    
+
+        <mat-card-content>
+          <p>
+            Book id: {{book.id}}
+          </p>
+        </mat-card-content>
+        
+        <mat-card-content>
+            <p>
+            Book Name :  {{book.name}}
+            </p>
+          </mat-card-content>
+          
+        <mat-card-content>
+            <p>
+            Author :  {{book.author}}
+            </p>
+          </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [disabled]="book.isfavorite" (click) ="addtofavorite(book)">Add to Favorite</button>
+    
+         
+         <!--   <button mat-button>SHARE</button> -->
+        </mat-card-actions>
+        <mat-divider></mat-divider>
+    </mat-card>
+  </mat-grid-tile>
+
+  </mat-grid-list>
+
+</div>

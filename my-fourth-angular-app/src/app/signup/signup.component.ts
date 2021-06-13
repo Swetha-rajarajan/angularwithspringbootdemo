@@ -1,0 +1,43 @@
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../data/user';
+import { UserService } from '../services/user.service';
+
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
+})
+export class SignupComponent implements OnInit {
+
+  status: boolean;
+  user: User = new User();
+
+  constructor(private route: ActivatedRoute, private router: Router, private userservice: UserService) { }
+
+
+  ngOnInit(): void {
+
+  }
+
+
+  routetologin(): void{
+    this.router.navigate(['/login']);
+  }
+
+  signup(signupForm: any): void {
+
+    this.user.username = signupForm.username;
+    this.user.password = signupForm.password;
+    this.userservice.addUser(this.user).subscribe(
+      data => {
+          this.router.navigate(['/login']);
+      }
+    );
+  }
+
+
+
+
+
+}

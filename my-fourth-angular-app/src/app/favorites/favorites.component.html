@@ -1,0 +1,48 @@
+<!-- Load and display the collection of notes from server as Material Cards with card title set to note title and card content set to note text  -->
+<form (ngSubmit)="searchBooks(searchForm.value)" #searchForm="ngForm" method="post" align="center">
+  <mat-form-field appearance="fill">
+    <mat-label>Search book by name</mat-label>
+    <input matInput name="search" ngModel>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" class="button" type="submit">Search</button>
+
+</form>
+
+
+
+<div class="cardis">
+    <mat-card class="display" *ngFor ="let book of books">
+        <!-- <mat-card-header>
+           <mat-card-title><b>Book</b></mat-card-title>
+        </mat-card-header>
+    -->
+        <mat-card-content>
+          <p *ngIf=(book.isfavorite)> 
+            Book id: {{book.id}}
+          </p>
+        </mat-card-content>
+        
+        <mat-card-content>
+          <p *ngIf=(book.isfavorite)> 
+            Book Name :  {{book.name}}
+            </p>
+          </mat-card-content>
+          
+        <mat-card-content>
+          <p *ngIf=(book.isfavorite)> 
+            Author :  {{book.author}}
+            </p>
+          </mat-card-content>
+        <mat-card-actions>
+          <button *ngIf="book.isfavorite"
+            mat-raised-button color="primary" (click) ="removefromfavorite(book)">Remove</button>
+    
+         
+         <!--   <button mat-button>SHARE</button> -->
+        </mat-card-actions>
+        <mat-divider></mat-divider>
+
+    </mat-card>
+</div>
+
